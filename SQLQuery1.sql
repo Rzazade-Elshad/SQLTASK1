@@ -1,0 +1,61 @@
+CREATE DATABASE BOOK
+USE BOOK
+CREATE TABLE Authors (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Name VARCHAR(20)
+);
+
+CREATE TABLE Genres (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    GenreName VARCHAR(20)
+);
+
+CREATE TABLE Books (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Title VARCHAR(20),
+    PublishedYear INT CHECK (PublishedYear > 2000),
+    AuthorId INT FOREIGN KEY  REFERENCES Authors(Id)
+);
+
+CREATE TABLE BookGenres (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    BookId INT  FOREIGN KEY  REFERENCES Books(Id),
+    GenreId INT FOREIGN KEY  REFERENCES Genres(Id)
+);
+INSERT INTO Authors  VALUES 
+( 'FHRTH'),
+( 'YJGHJl'),
+( 'HFTGe'),
+( 'UJKGH'),
+( 'DHJ ');
+
+INSERT INTO Genres  VALUES 
+( 'UYUYUYUYU'),
+( 'GHNGJGHJ'),
+( 'HKLHKLHK'),
+( 'KHUKUK'),
+( 'KJLJIL');
+
+INSERT INTO Books  VALUES 
+('TYUJTYJ', 2005,1),
+( 'YJHJTJT', 2001,5),
+( 'HYFJ',  2006,2),
+( 'HJFJGY',  2007,4),
+( 'FGHFH',  2003,3);
+
+INSERT INTO BookGenres  VALUES 
+(1, 1),
+(2, 2),
+(3, 5),
+(4, 4),
+(5, 3);
+
+SELECT * FROM Books 
+WHERE PublishedYear > 2005 
+ORDER BY Title;
+
+SELECT * FROM Books 
+WHERE Title LIKE 'T%';
+
+SELECT * FROM Genres 
+ORDER BY GenreName DESC;
